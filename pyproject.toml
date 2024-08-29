@@ -1,0 +1,54 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "yolov7-fork"
+authors = [{ name = "FurioaAI Inc.", email = "pkg@furiosa.ai" }]
+readme = "README.md"
+license-files = { paths = ["LICENSE"] }
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+description = "yolov7-fork"
+requires-python = "~=3.8"
+dynamic = ["version"]
+dependencies = [
+    "PyYAML", 
+    matplotlib>=3.2.2
+    numpy>=1.18.5,<1.24.0
+    opencv-python>=4.1.1
+    Pillow>=7.1.2
+    PyYAML>=5.3.1
+    requests>=2.23.0
+    scipy>=1.4.1
+    torch>=1.7.0,!=1.12.0
+    torchvision>=0.8.1,!=0.13.0
+    tqdm>=4.41.0
+    protobuf<4.21.3
+    ]
+
+[project.optional-dependencies]
+test = ["pytest", "ruff", "pydot"]
+e2e_test = ["evaluate[evaluator]==0.4.2", "scikit-learn==1.5.0"]
+
+[tool.flit.module]
+name = "yolov7"
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["furiosa"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests/unittest"]
